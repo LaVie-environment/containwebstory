@@ -1,0 +1,19 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: intra
+spec:
+  volumes:
+    - name: "intra-data"
+      hostPath:
+        path: "/var/lib/intra"
+    containers:
+    - image: docker.io/lavies/intramage:v1
+      name: intra
+      volumeMounts:
+        - mountPath: "/data"
+          name: "intra-data"
+      ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
